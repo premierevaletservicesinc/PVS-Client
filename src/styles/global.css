@@ -71,11 +71,16 @@ hr {
     border-top: 1px solid var(--border);
 }
 
-/* Hero image banner shared by most pages */
+/* Hero image banner shared by most pages. The banner photos are group shots that run edge to edge, about
+   1.6-1.8 times as wide as they are tall. Capping the height at 55vw keeps the banner at least that wide,
+   so `cover` only ever crops the top and bottom, never the people at either end of the row. */
 .header-1 {
     position: relative;
-    height: 55vh;
+    height: min(55vh, 55vw);
     padding-top: 24vh;
+    /* Start below the fixed navbar and its phone bar (~82px on desktop, ~100px on phones, set below).
+       Several photos have heads near the top edge, which the navbar would otherwise cover. */
+    margin-top: 82px;
 }
 
 .header-1::after {
@@ -266,8 +271,9 @@ a:focus:not(:focus-visible) {
         font-size: 16px;
     }
 
+    /* The navbar plus its phone bar is taller on phones */
     .header-1 {
-        height: 100vh;
+        margin-top: 100px;
     }
 
     .header-2 {
@@ -279,12 +285,6 @@ a:focus:not(:focus-visible) {
     .staff__title {
         font-size: 1.8em;
         letter-spacing: 0.08em;
-    }
-}
-
-@media only screen and (max-width: 420px) {
-    .header-1 {
-        height: 45vh;
     }
 }
 
