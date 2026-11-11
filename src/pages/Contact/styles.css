@@ -11,7 +11,20 @@
     padding-top: 40px;
 }
 
+/* Pinned near the bottom of the banner, over the legs and sidewalk rather than the faces and vests (same as
+   the home page's quote button). Positioned on a wrapper so the buttons' own hover lift (a transform) can't
+   knock them off center. */
+.contact__header-actions {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 30%;
+    z-index: 1;
+    text-align: center;
+}
+
 .contact__header .ui.black.button {
+    margin: 0;
     font-size: 1.3em;
     color: var(--text-dark);
     background-color: var(--text);

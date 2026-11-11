@@ -15,12 +15,14 @@ const Contact = () => {
         <div>
             <MetaData title="Contact Us - Premiere Valet Services, Inc." />
             <div className="contact__header">
-                <button className="ui black massive button" onClick={scrollDown}>
-                    Contact Us
-                </button>
-                <a className="contact__mobile-button" href="tel:+13238765816">
-                    Contact Us
-                </a>
+                <div className="contact__header-actions">
+                    <button className="ui black massive button" onClick={scrollDown}>
+                        Contact Us
+                    </button>
+                    <a className="contact__mobile-button" href="tel:+13238765816">
+                        Contact Us
+                    </a>
+                </div>
             </div>
             <div ref={contactRef} className="contact__section-1">
                 <div className="contact__information">
