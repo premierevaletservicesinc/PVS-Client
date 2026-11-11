@@ -2,9 +2,11 @@
     background-color: var(--background);
 }
 
+/* The height never goes past the photo's own aspect ratio (2400x1417 -> 59vw), so `cover` only ever crops
+   the top and bottom, never the people standing at either end of the row. */
 .home__section-1 {
     position: relative;
-    height: 80vh;
+    height: min(80vh, 59vw);
     padding-top: 8vw;
     background-color: black;
     display: flex;
@@ -19,7 +21,9 @@
     inset: 0;
     background-image: url('../../images/home-hero.jpg');
     background-size: cover;
-    background-position: center;
+    /* When wide screens crop the top and bottom, take more off the street than the top, so faces sit
+       well below the see-through navbar */
+    background-position: center 25%;
     opacity: 0;
     transition: opacity 0.9s ease-in-out;
     pointer-events: none;
@@ -49,10 +53,16 @@
     opacity: 0;
 }
 
-/* Hidden (not just transparent) until it fades in, so it can't be clicked or focused early */
+/* Hidden (not just transparent) until it fades in, so it can't be clicked or focused early.
+   Pinned near the bottom of the hero, over the dark pants and street rather than the faces and white shirts.
+   Taking it out of the flex column also lets the intro logo sit truly centered. */
 .home__quote-button {
-    position: relative;
+    position: absolute;
     z-index: 1;
+    left: 50%;
+    bottom: 30%;
+    transform: translateX(-50%);
+    white-space: nowrap;
     display: inline-block;
     opacity: 0;
     visibility: hidden;
@@ -174,8 +184,15 @@
         font-size: 2em;
     }
 
+    /* Mobile photo is 1200x1032 -> 86vw. The navbar plus its phone bar is ~100px tall on phones, which would
+       land right on the faces, so the photo starts 64px down and the hero grows by the same amount. The
+       strip above it is black behind the dark navbar, so it reads as part of the navbar. */
     .home__section-1 {
-        height: 60vh;
+        height: calc(min(60vh, 86vw) + 64px);
+    }
+
+    .home__section-1::before {
+        top: 64px;
     }
 
     .home__logo {
